@@ -20,10 +20,9 @@
     "karma-spec-reporter": "0.0.12"
   },
   "scripts": {
-    "postinstall": "bower install",
-    "prestart": "npm install",
+    "prestart": "sh install-deps.sh",
     "start": "http-server -a localhost -p 8000",
-    "pretest": "npm install",
+    "pretest": "sh install-deps.sh",
     "test": "karma start test/karma.conf.js",
     "test-single-run": "karma start test/karma.conf.js  --single-run",
     "preupdate-webdriver": "npm install",
