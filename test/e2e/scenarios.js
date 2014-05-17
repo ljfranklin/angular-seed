@@ -1,7 +1,5 @@
 'use strict';
 
-/* https://github.com/angular/protractor/blob/master/docs/getting-started.md */
-
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 
@@ -15,7 +13,6 @@ describe('my app', function() {
   it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
     expect(browser.getCurrentUrl()).to.eventually.match(/#\/view1$/);
   });
-
 
   describe('view1', function() {
 
@@ -43,6 +40,5 @@ describe('my app', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
         to.eventually.match(/partial for view 2/);
     });
-
   });
 });
