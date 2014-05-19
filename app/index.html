@@ -9,9 +9,13 @@
   <title>My AngularJS App</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+
+  <!-- build:css({.tmp,app}) css/app.css -->
   <link rel="stylesheet" href="css/app.css"/>
+  <!-- endbuild -->
 </head>
 <body>
   <ul class="menu">
@@ -27,8 +31,6 @@
 
   <div>Angular seed app: v<span app-version></span></div>
 
-  <!-- build:js scripts/main.js -->
   <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
-  <!-- endbuild -->
 </body>
 </html>

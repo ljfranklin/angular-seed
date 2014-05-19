@@ -2,16 +2,29 @@
 
 module.exports = function (grunt) {
 
+    require('load-grunt-config')(grunt);
+
     grunt.initConfig({
         project: {
-            app: 'app/',
-            dist: 'dist/'
+            app: 'app',
+            dist: 'dist'
         },
         jshint: {
             files: ['Gruntfile.js', 'app/scripts/**/*.js', 'test/e2e/*.js', 'test/unit/**/*.js', 'test/*.js'],
             options: {
                 ignores: ['app/bower_components/', 'test/bower_components/', 'node_modules/'],
                 jshintrc: true
+            }
+        },
+        clean: {
+            dist: {
+                files: [{
+                    dot: true,
+                    src: [
+                        '.tmp',
+                        '<%= project.dist %>'
+                    ]
+                }]
             }
         },
         watch: {
@@ -49,6 +62,69 @@ module.exports = function (grunt) {
                 }
             }
         },
+        copy: {
+            all: {
+                expand: true,
+                cwd: 'app/',
+                src: ['**/*.html', '**/*.css', '**/*.js'],
+                dest: 'dist/'
+            }
+        },
+
+        useminPrepare: {
+            html: '<%= project.app %>/index.html',
+            options: {
+                dest: '<%= project.dist %>',
+                flow: {
+                    html: {
+                        steps: {
+                            css: ['cssmin']
+                        },
+                        post: {}
+                    }
+                }
+            }
+        },
+
+        // Performs rewrites based on rev and the useminPrepare configuration
+        usemin: {
+            html: ['<%= project.dist %>/index.html'],
+            css: ['<%= project.dist %>/css/{,*/}*.css'],
+            options: {
+                assetsDirs: ['<%= project.dist %>']
+            }
+        },
+
+        requirejs: {
+            dist: {
+                // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
+                options: {
+                    almond: true,
+                    replaceRequireScript: [{
+                        files: ['<%= project.dist %>/index.html'],
+                        module: 'main'
+                    }],
+                    modules: [{name: 'main'}],
+                    baseUrl: '<%= project.app %>/scripts',
+                    dir: '<%= project.dist %>/scripts',
+                    optimize: 'uglify',
+                    mainConfigFile: '<%= project.app %>/scripts/requirejs-config.js',
+                    findNestedDependencies: true,
+                    preserveLicenseComments: false,
+                    useStrict: true,
+                    wrap: true,
+                    wrapShim: true
+                }
+            }
+        },
+
+        // The following *-min tasks produce minified files in the dist folder
+        cssmin: {
+            options: {
+                root: '<%= project.app %>'
+            }
+        },
+
         htmlmin: {
             dist: {
                 options: {
@@ -59,19 +135,32 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.dist %>',
+                    cwd: '<%= project.dist %>',
                     src: ['*.html'],
-                    dest: '<%= yeoman.dist %>'
+                    dest: '<%= project.dist %>'
                 }]
+            }
+        },
+
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        '<%= project.dist %>/css/{,*/}*.css'
+                    ]
+                }
             }
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-
     grunt.registerTask('build', [
+        'clean',
+        'useminPrepare',
+        'copy',
+        'cssmin',
+        'requirejs',
+        'rev',
+        'usemin',
         'htmlmin'
     ]);
 
