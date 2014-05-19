@@ -66,7 +66,7 @@ module.exports = function (grunt) {
             all: {
                 expand: true,
                 cwd: 'app/',
-                src: ['**/*.html', '**/*.css', '**/*.js'],
+                src: ['**/*.html', '**/*.css', '!bower_components/**/*.html', '!bower_components/**/*.css'],
                 dest: 'dist/'
             }
         },
@@ -113,7 +113,8 @@ module.exports = function (grunt) {
                     preserveLicenseComments: false,
                     useStrict: true,
                     wrap: true,
-                    wrapShim: true
+                    wrapShim: true,
+                    removeCombined: true
                 }
             }
         },
@@ -150,6 +151,13 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+
+        karma: {
+            unit: {
+                configFile: 'test/karma.conf.js',
+                singleRun: true
+            }
         }
     });
 
@@ -167,5 +175,9 @@ module.exports = function (grunt) {
     grunt.registerTask('serve', [
         'connect:app',
         'watch'
+    ]);
+
+    grunt.registerTask('test', [
+        'karma'
     ]);
 };

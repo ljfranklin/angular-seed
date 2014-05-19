@@ -16,13 +16,13 @@ define([
         it('should ....', inject(function($controller) {
             //spec body
             var myCtrl1 = $controller('MyCtrl1', { $scope: {} });
-            expect(myCtrl1).to.be.defined();
+            expect(myCtrl1).to.be.defined;
         }));
 
         it('should ....', inject(function($controller) {
             //spec body
             var myCtrl2 = $controller('MyCtrl2', { $scope: {} });
-            expect(myCtrl2).to.be.defined();
+            expect(myCtrl2).to.be.defined;
         }));
     });
 });
