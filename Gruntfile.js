@@ -161,7 +161,7 @@ module.exports = function (grunt) {
         run_protractor: {
             e2e: {
                 configFile: 'test/protractor.conf.js',
-                keepAlive: true
+                keepAlive: false
             }
         },
 
