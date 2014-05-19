@@ -6,7 +6,7 @@ require.config({
         'angular-route': '../bower_components/angular-route/angular-route',
         'angular-resource': '../bower_components/angular-resource/angular-resource',
         'angular-animate': '../bower_components/angular-animate/angular-animate',
-        'jquery': '../bower_components/jquery/dist/jquery'
+        jquery: '../bower_components/jquery/jquery'
     },
     shim: {
         angular: {
