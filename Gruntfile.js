@@ -159,10 +159,11 @@ module.exports = function (grunt) {
         },
 
         run_protractor: {
-            e2e: {
+            options: {
                 configFile: 'test/protractor.conf.js',
                 keepAlive: false
-            }
+            },
+            e2e: {}
         },
 
         shell: {
