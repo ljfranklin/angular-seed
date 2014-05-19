@@ -23,7 +23,7 @@ describe('my app', function() {
 
     it('should render view1 when user navigates to /view1', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
-        to.eventually.match(/partial for view 12/);
+        to.eventually.match(/partial for view 1/);
     });
 
   });
