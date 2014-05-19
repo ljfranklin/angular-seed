@@ -50,9 +50,7 @@ module.exports = function (grunt) {
                 options: {
                     port: 8001,
                     base: [
-                        '.tmp',
-                        'test',
-                        '<%= project.app %>'
+                        '<%= project.dist %>'
                     ]
                 }
             },
@@ -170,9 +168,16 @@ module.exports = function (grunt) {
         shell: {
             webdriver: {
                 command: './node_modules/protractor/bin/webdriver-manager update'
+            },
+            deps: {
+                command: 'sh install-deps.sh'
             }
         }
     });
+
+    grunt.registerTask('install_deps', [
+        'shell:deps'
+    ]);
 
     grunt.registerTask('build', [
         'clean',
@@ -192,6 +197,7 @@ module.exports = function (grunt) {
 
     grunt.renameTask('protractor', 'run_protractor');
     grunt.registerTask('protractor', [
+        'build',
         'connect:test',
         'shell:webdriver',
         'run_protractor'
