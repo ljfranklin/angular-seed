@@ -158,6 +158,19 @@ module.exports = function (grunt) {
                 configFile: 'test/karma.conf.js',
                 singleRun: true
             }
+        },
+
+        run_protractor: {
+            e2e: {
+                configFile: 'test/protractor.conf.js',
+                keepAlive: true
+            }
+        },
+
+        shell: {
+            webdriver: {
+                command: './node_modules/protractor/bin/webdriver-manager update'
+            }
         }
     });
 
@@ -177,7 +190,15 @@ module.exports = function (grunt) {
         'watch'
     ]);
 
+    grunt.renameTask('protractor', 'run_protractor');
+    grunt.registerTask('protractor', [
+        'connect:test',
+        'shell:webdriver',
+        'run_protractor'
+    ]);
+
     grunt.registerTask('test', [
-        'karma'
+        'karma',
+        'protractor'
     ]);
 };
