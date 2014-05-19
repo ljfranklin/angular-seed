@@ -1,19 +1,22 @@
 language: node_js
 node_js:
-  - 0.10
-
+- 0.1
 notifications:
   email: false
-
 before_install:
-  - npm install -g grunt-cli
-  - npm install -g bower
-
+- npm install -g grunt-cli
+- npm install -g bower
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - grunt install_deps
-  - sleep 1 # give server time to start
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- grunt install_deps
+- sleep 1
 script:
-  - grunt test --browser=firefox
+- grunt test --browser=firefox
+deploy:
+  provider: heroku
+  api_key:
+    secure: BBEBhkxFp6j82zq4W1vYhZJgr77h5rgCXSL+GI/736Br2j4Eu2OA7CljPluV7Th3JfJMbzXJqdX7LR1Qwa8RvWClxz7/3msAiP/chnncBkLst8Lqh6h4hvKymnvs+j+uhSUWBXBbM4ECNJ1JZeAxzCxllrJVM2m/dR1ljLQ5KiE=
+  app: angular-seed-stack
+  on:
+    repo: ljfranklin/angular-seed
