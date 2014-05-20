@@ -217,4 +217,6 @@ module.exports = function (grunt) {
         'karma',
         'protractor'
     ]);
+
+    grunt.registerTask('heroku:development', ['build']);
 };
