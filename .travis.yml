@@ -13,7 +13,7 @@ before_script:
 - sleep 1
 script:
 - grunt test --browser=firefox
-pre_deploy:
+before_deploy:
 - git fetch --unshallow
 deploy:
   provider: heroku
