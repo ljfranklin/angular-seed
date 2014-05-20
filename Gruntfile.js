@@ -218,5 +218,8 @@ module.exports = function (grunt) {
         'protractor'
     ]);
 
-    grunt.registerTask('heroku:development', ['build']);
+    grunt.registerTask('heroku:development', [
+        'install_deps',
+        'build'
+    ]);
 };
