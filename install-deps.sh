@@ -1,6 +1,6 @@
 #!/bin/bash
-bower install
-cd test/
-bower install
-cd ..
 npm install
+./node_modules/bower/bin/bower install
+cd test/
+../node_modules/bower/bin/bower install
+cd ..
