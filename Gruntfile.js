@@ -64,7 +64,7 @@ module.exports = function (grunt) {
             all: {
                 expand: true,
                 cwd: 'app/',
-                src: ['**/*.html', '**/*.css', '!bower_components/**/*.html', '!bower_components/**/*.css'],
+                src: ['**/*.html', '**/*.css', '!bower_components/**/*.html'],
                 dest: 'dist/'
             }
         },
