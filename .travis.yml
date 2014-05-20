@@ -16,6 +16,7 @@ script:
 deploy:
   provider: heroku
   buildpack: https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
+  strategy: anvil
   api_key:
     secure: BBEBhkxFp6j82zq4W1vYhZJgr77h5rgCXSL+GI/736Br2j4Eu2OA7CljPluV7Th3JfJMbzXJqdX7LR1Qwa8RvWClxz7/3msAiP/chnncBkLst8Lqh6h4hvKymnvs+j+uhSUWBXBbM4ECNJ1JZeAxzCxllrJVM2m/dR1ljLQ5KiE=
   app: angular-seed-stack
