@@ -173,6 +173,15 @@ module.exports = function (grunt) {
             deps: {
                 command: 'sh install-deps.sh'
             }
+        },
+
+        express: {
+            dev: {
+                options: {
+                    script: 'web.js',
+                    port: 8001
+                }
+            }
         }
     });
 
@@ -199,8 +208,8 @@ module.exports = function (grunt) {
     grunt.renameTask('protractor', 'run_protractor');
     grunt.registerTask('protractor', [
         'build',
-        'connect:test',
         'shell:webdriver',
+        'express:dev',
         'run_protractor'
     ]);
 
