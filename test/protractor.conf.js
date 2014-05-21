@@ -1,8 +1,7 @@
 'use strict';
 
 exports.config = {
-    allScriptsTimeout: 11000,
-
+    
     specs: [
         'e2e/*.js'
     ],
@@ -18,6 +17,6 @@ exports.config = {
     mochaOpts: {
         reporter: 'spec',
         slow: 3000,
-        defaultTimeoutInterval: 10000
+        defaultTimeoutInterval: 30000
     }
 };
