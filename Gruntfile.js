@@ -64,7 +64,7 @@ module.exports = function (grunt) {
             all: {
                 expand: true,
                 cwd: 'app/',
-                src: ['**/*.html', '**/*.css', '!bower_components/**/*.html'],
+                src: ['**/*.html', '!bower_components/**/*.html'],
                 dest: 'dist/'
             }
         },
@@ -72,22 +72,14 @@ module.exports = function (grunt) {
         useminPrepare: {
             html: '<%= project.app %>/index.html',
             options: {
-                dest: '<%= project.dist %>',
-                flow: {
-                    html: {
-                        steps: {
-                            css: ['cssmin']
-                        },
-                        post: {}
-                    }
-                }
+                dest: '<%= project.dist %>'
             }
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
         usemin: {
             html: ['<%= project.dist %>/index.html'],
-            css: ['<%= project.dist %>/css/{,*/}*.css'],
+            css: ['<%= project.dist %>/styles/{,*/}*.css'],
             options: {
                 assetsDirs: ['<%= project.dist %>']
             }
@@ -117,10 +109,14 @@ module.exports = function (grunt) {
             }
         },
 
-        // The following *-min tasks produce minified files in the dist folder
-        cssmin: {
-            options: {
-                root: '<%= project.app %>'
+        less: {
+            dev: {
+                options: {
+                    compress: true
+                },
+                files: {
+                    '<%= project.dist %>/styles/base.css': '<%= project.app %>/styles/base.less'
+                }
             }
         },
 
@@ -145,7 +141,7 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%= project.dist %>/css/{,*/}*.css'
+                        '<%= project.dist %>/styles/{,*/}*.css'
                     ]
                 }
             }
@@ -193,7 +189,7 @@ module.exports = function (grunt) {
         'clean',
         'useminPrepare',
         'copy',
-        'cssmin',
+        'less',
         'requirejs',
         'rev',
         'usemin',
