@@ -3,6 +3,8 @@ node_js:
 - 0.1
 notifications:
   email: false
+addons:
+  sauce_connect: true
 before_install:
 - npm install -g grunt-cli
 - npm install -g bower
@@ -22,3 +24,7 @@ deploy:
   api_key:
     secure: BBEBhkxFp6j82zq4W1vYhZJgr77h5rgCXSL+GI/736Br2j4Eu2OA7CljPluV7Th3JfJMbzXJqdX7LR1Qwa8RvWClxz7/3msAiP/chnncBkLst8Lqh6h4hvKymnvs+j+uhSUWBXBbM4ECNJ1JZeAxzCxllrJVM2m/dR1ljLQ5KiE=
   app: angular-seed-stack
+env:
+  global:
+  - secure: IiJMcLdJiUtIJbf0qt5ECahaAAbGf/nnZZ6Eq1bx4W4oKlKmnUnRM4pDPYwzc0zNzq+hr/uCRvoVh1mjp+7pYm0VemidS/WyXR4jpKPq7hnYpoYJ+bu9dtP0H8UgpkNiMvwEATBhPReP5vMqRhwFWR8qMxDWx5s4wb/FCBeIkwQ=
+  - secure: IUV58DydxDr1VAxBk6BfMSsS2wRcCUN7DhDpHskaid3gC9jlKDmA5QgnLlWaNWHLz5vLjZGRLlkCQgF5VFHunuENnt01u0j9kBeY8geIq23W8A0uvmnUuOBafoLEjNL02exEWvVgPTTxs/w9QC0XiKgRqO2eCxnc8+GIA83GDjY=
