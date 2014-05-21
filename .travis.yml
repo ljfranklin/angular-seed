@@ -10,7 +10,6 @@ before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - grunt install_deps
-- ./node_modules/protractor/bin/webdriver-manager start
 - sleep 1
 script:
 - grunt test --browser=firefox

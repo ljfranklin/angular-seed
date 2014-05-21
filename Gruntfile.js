@@ -168,7 +168,7 @@ module.exports = function (grunt) {
 
         shell: {
             webdriver: {
-                command: './node_modules/protractor/bin/webdriver-manager update'
+                command: './node_modules/protractor/bin/webdriver-manager update --standalone'
             },
             deps: {
                 command: 'sh install-deps.sh'
