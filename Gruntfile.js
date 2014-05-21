@@ -162,10 +162,6 @@ module.exports = function (grunt) {
             e2e: {}
         },
 
-//        protractor_webdriver: {
-//            e2e: {}
-//        },
-
         shell: {
             webdriver: {
                 command: './node_modules/protractor/bin/webdriver-manager update --standalone'
@@ -209,7 +205,6 @@ module.exports = function (grunt) {
     grunt.registerTask('protractor', [
         'build',
         'shell:webdriver',
-//        'protractor_webdriver',
         'express:dev',
         'run_protractor'
     ]);
